@@ -1,0 +1,111 @@
+#include <iostream>
+#include <vector>
+#include <cctype>
+
+using namespace std;
+
+void display_menu();
+char read_selection();
+void print_numbers(const vector<int> numbers);
+void Add_number(vector<int> &numbers);
+void display_mean(const vector<int> numbers);
+void smallest_num(const vector<int> numbers);
+void largest_num(const vector<int> numbers);
+void Quit();
+
+void display_menu(){
+    cout << "\nP - Print numbers" << endl;
+        cout << "A - Add a number" << endl;
+        cout << "M - Display mean of the numbers" << endl;
+        cout << "S - Display the smallest number" << endl;
+        cout << "L - Display the largest number"<< endl;
+        cout << "Q - Quit" << endl;
+}
+char read_selection(){
+    char c,C;
+    cout << "\nEnter your choice: ";
+    cin>>c;
+    C=toupper(c);
+    return C;
+}
+
+void print_numbers(const vector<int> numbers){
+    if (numbers.size() == 0)
+                cout << "[] - the list is empty" << endl;
+    else {
+            cout << "[ ";
+            for (auto num: numbers)
+            cout << num << " ";
+            cout << "]" << endl;
+        }
+}
+void Add_number(vector<int> &numbers){
+    int num_to_add {};
+    cout << "Enter an integer to add to the list: ";
+    cin >> num_to_add;
+    numbers.push_back(num_to_add);
+    cout << num_to_add << " added" << endl;
+}
+void Quit(){
+    cout<<"Goodbye"<<endl;
+}
+
+int main() {
+
+    vector<int> numbers {};
+    char selection {};
+    do{
+        display_menu();
+        selection=read_selection();
+        if (selection == 'P') {
+            print_numbers(numbers);
+        } else if (selection == 'A') {
+            Add_number(numbers);
+        } else if (selection == 'M') {
+            display_mean(numbers);
+        } else if (selection == 'S') {
+            smallest_num(numbers);
+        } else if (selection == 'L') {
+            largest_num(numbers);
+        } else if (selection == 'Q') {
+            Quit();
+        } else {
+            cout << "Unknown selection, please try again" << endl;
+        }
+    }while(selection!='Q');
+    cout  << endl;
+    return 0;
+}
+
+void smallest_num(const vector<int> numbers){
+    if (numbers.size() == 0) 
+                cout << "Unable to determine the smallest - list is empty" << endl;
+            else {
+                int smallest = numbers.at(0);
+                for (auto num: numbers)
+                    if (num < smallest)
+                        smallest = num;
+                cout << "The smallest number is: " << smallest << endl;
+            }
+}
+void largest_num(const vector<int> numbers){
+    if (numbers.size() == 0)
+                cout << "Unable to determine largest - list is empty"<< endl;   
+            else {
+                int largest = numbers.at(0);
+                for (auto num: numbers)
+                    if (num > largest)
+                        largest = num;
+                cout << "The largest number is: " << largest << endl;
+            }
+}
+void display_mean(const vector<int> numbers){
+    if (numbers.size() == 0)
+                cout << "Unable to calculate mean - no data" << endl;
+            else {
+                int total {};
+                for (auto num: numbers)
+                    total += num;
+                cout << "The mean is : " << static_cast<double>(total)/numbers.size() << endl;
+            }
+}
