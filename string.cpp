@@ -84,7 +84,19 @@ void find_duplicate1(string s){//for strings with all elmemts in lower case
         }
     }
 }
-
+void find_duplicate2(string s){//for strings with all elmemts in lower case and it does not tell how many times it is repeating
+    long int H =0,x=0;
+    for(int i=0;i<s.size();i++){
+        x=1;
+        x=x<<(s[i]-97);
+        if((x & H)>0){
+            cout<<"Letter "<<s[i]<<" is duplicate."<<endl;
+        }else{
+            
+            H=(x|H);
+        }
+    }
+}
 
 int main() {
 	string s;
@@ -135,5 +147,6 @@ int main() {
 	palindrome(pal);
 	getline(cin,dup);
 	find_duplicate1(dup);
+	find_duplicate2(dup);
 	return 0;
 }
