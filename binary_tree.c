@@ -81,12 +81,30 @@ void preorder(struct Node *t){
         preorder(t->rchild);
     }
 }
-
+void inorder(struct Node *t){
+    if(t!=NULL){
+        inorder(t->lchild);
+        printf("%d ",t->data);
+        inorder(t->rchild);
+    }
+}
+void postorder(struct Node *t){
+    if(t!=NULL){
+        postorder(t->lchild);
+        postorder(t->rchild);
+        printf("%d ",t->data);
+    }
+}
 
 
 
 int main() {
 	create_binary_tree();
 	preorder(root);
+	printf("\n");
+	inorder(root);
+	printf("\n");
+	postorder(root);
+	printf("\n");
 	return 0;
 }
