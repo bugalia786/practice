@@ -153,6 +153,16 @@ int height(struct Node *t){
     }
     return 0;
 }
+int count_leaf(struct Node *t){
+    int x,y;
+    if(t!=NULL){
+        x=count_leaf(t->lchild);
+        y=count_leaf(t->rchild);
+        if(x==0 && y==0) return x+y+1;
+        else return x+y;
+    }
+    return 0;
+}
 
 int main() {
 	create_binary_tree();
@@ -168,5 +178,6 @@ int main() {
 	printf("No of two degree nodes: %d\n",count_two_degree_node(root));
 	printf("sum of nodes: %d\n",sum(root));
 	printf("height: %d\n",height(root));
+	printf("No of leaf nodes: %d\n",count_leaf(root));
 	return 0;
 }
