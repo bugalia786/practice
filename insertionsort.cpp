@@ -10,17 +10,18 @@ using namespace std;
 }*/
 
 void insertionsort(int *A,int n){
-    int temp;
+    int temp,j;
     for(int i=0;i<n;i++){
         temp=A[i];
-        for(int j=i-1;j>=0;j--){
+        for(j=i-1;j>=0;j--){
             if(A[j]>temp){
                 A[j+1]=A[j];
             }else{
-                A[j+1]=temp;
+                
                 break;
             }
         }
+	A[j+1]=temp;
     }
 }
 void display(int *A,int n){
