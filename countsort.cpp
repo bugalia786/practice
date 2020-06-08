@@ -13,7 +13,7 @@ int max_function(int *A,int n){
 }
 void countsort(int *A,int n){
     int max=max_function(A,n);
-    int H[max+1];
+    int *H=new int[max+1];
     for(int i=0;i<max+1;i++){
         H[i]=0;
     }
@@ -27,6 +27,7 @@ void countsort(int *A,int n){
             H[i]--;
         }
     }
+    delete []H;
 }
 void display(int *A,int n){
     for(int i=0;i<n;i++){
